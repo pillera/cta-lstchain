@@ -7,7 +7,7 @@ from ctapipe.image.muon.muon_integrator import MuonLineIntegrate
 from ctapipe.image.cleaning import tailcuts_clean
 
 from astropy.coordinates import Angle, SkyCoord, AltAz
-from ctapipe.image.muon.muon_ring_finder import ChaudhuriKunduRingFitter
+from ctapipe.image.muon.muon_ring_finder import MuonRingFitter
 from ctapipe.coordinates import CameraFrame, NominalFrame
 from astropy import units as u
 
@@ -81,7 +81,7 @@ def fit_muon(x, y, image, geom, tailcuts):
     image_clean:   `np.ndarray` image after cleaning
     """
 
-    muonring = ChaudhuriKunduRingFitter(None)
+    muonring = MuonRingFitter(None)
     clean_mask = tailcuts_clean(geom, image, picture_thresh=tailcuts[0],
                                     boundary_thresh=tailcuts[1])
     image_clean = image * clean_mask
